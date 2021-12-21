@@ -1,3 +1,6 @@
+mod easy;
+
+
 fn main() {
-    println!("Hello, world!");
+    easy::palindrome_number::run();
 }
