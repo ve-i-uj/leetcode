@@ -2,9 +2,7 @@
 
 import timeit
 
-
-def test():
-    pass
+from easy.palindrome_number import *
 
 
 def main():
