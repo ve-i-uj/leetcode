@@ -2,5 +2,5 @@ mod easy;
 
 
 fn main() {
-    easy::palindrome_number::run();
+    easy::roman_to_integer::run();
 }
