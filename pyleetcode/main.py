@@ -2,11 +2,11 @@
 
 import timeit
 
-from easy.palindrome_number import *
+from easy.roman_to_integer import test
 
 
 def main():
-    time_it()
+    test()
 
 
 def time_it():
