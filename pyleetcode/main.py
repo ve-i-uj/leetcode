@@ -7,6 +7,7 @@ from easy.roman_to_integer import test
 
 def main():
     test()
+    print('Done (python)')
 
 
 def time_it():
