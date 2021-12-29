@@ -3,6 +3,21 @@
 https://leetcode.com/problems/valid-parentheses/
 """
 
+from dataclasses import dataclass, fields
+
+
+@dataclass
+class Counter:
+    round: int
+    square: int
+    curly: int
+
+    def is_valid(self):
+        return sum(getattr(self, f.name) for f in fields(self)) <= 1
+
+    def is_valid_after_stop(self):
+        return not any(getattr(self, f.name) != 0 for f in fields(self))
+
 
 class Solution:
 
@@ -10,42 +25,40 @@ class Solution:
         length = len(s)
         if length % 2 != 0:
             return False
-        round_cntr = 0
-        square_cntr = 0
-        curly_cntr = 0
-        for i, ch in enumerate(s):
+        counter = Counter(0, 0, 0)
+        for ch in s:
             if ch == '(':
-                round_cntr += 1
+                counter.round += 1
             elif ch == ')':
-                round_cntr -= 1
+                counter.round -= 1
             elif ch == '[':
-                square_cntr += 1
+                counter.square += 1
             elif ch == ']':
-                square_cntr -= 1
+                counter.square -= 1
             elif ch == '{':
-                curly_cntr += 1
+                counter.curly += 1
             elif ch == '}':
-                curly_cntr -= 1
+                counter.curly -= 1
 
-            if round_cntr < 0 or square_cntr < 0 or curly_cntr < 0:
+            if not counter.is_valid():
                 return False
 
-            if (length - i) < (round_cntr + square_cntr + curly_cntr):
-                return False
-
-        if sum([round_cntr, square_cntr, curly_cntr]) != 0:
+        if not counter.is_valid_after_stop():
             return False
 
         return True
 
 
 def test():
+    # my tests
     assert not Solution().isValid('(')
     assert not Solution().isValid('(()[][]')
     assert not Solution().isValid('(){[[[{}()'), \
         'Need stop on the 4th element by the end'
     assert not Solution().isValid('()}[]'), 'The third bracket is a closing bracket'
-
+    # task tests
     assert Solution().isValid('()')
     assert Solution().isValid('()[]{}')
     assert not Solution().isValid('(]')
+    # check task test
+    assert not Solution().isValid('([)]')
