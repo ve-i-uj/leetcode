@@ -3,20 +3,54 @@
 https://leetcode.com/problems/valid-parentheses/
 """
 
-from dataclasses import dataclass, fields
+import enum
 
 
-@dataclass
-class Counter:
-    round: int
-    square: int
-    curly: int
+class PEnum(enum.Enum):
+    ROUND_O = '('
+    ROUND_C = ')'
+    SQUARE_O = '['
+    SQUARE_C = ']'
+    CURLY_O = '{'
+    CURLY_C = '}'
 
-    def is_valid(self):
-        return sum(getattr(self, f.name) for f in fields(self)) <= 1
 
-    def is_valid_after_stop(self):
-        return not any(getattr(self, f.name) != 0 for f in fields(self))
+PARENTHESES_O_BY_C = {
+    PEnum.ROUND_C: PEnum.ROUND_O,
+    PEnum.SQUARE_C: PEnum.SQUARE_O,
+    PEnum.CURLY_C: PEnum.CURLY_O,
+}
+OPEN_PARENTHESES = set(PARENTHESES_O_BY_C.values())
+CLOSE_PARENTHESES = set(PARENTHESES_O_BY_C.keys())
+
+
+class Stack:
+
+    def __init__(self) -> None:
+        self._stack: list = []
+
+    @property
+    def is_empty(self) -> bool:
+        return bool(self._stack)
+
+    @property
+    def length(self) -> int:
+        return len(self._stack)
+
+    def consume(self, paren: PEnum) -> bool:
+        if paren in OPEN_PARENTHESES:
+            self._stack.append(paren)
+            return True
+
+        if paren in CLOSE_PARENTHESES:
+            if not self._stack:
+                return False
+            last_open_p = self._stack.pop()
+            if PARENTHESES_O_BY_C[paren] == last_open_p:
+                return True
+            return False
+
+        return False
 
 
 class Solution:
@@ -25,27 +59,13 @@ class Solution:
         length = len(s)
         if length % 2 != 0:
             return False
-        counter = Counter(0, 0, 0)
-        for ch in s:
-            if ch == '(':
-                counter.round += 1
-            elif ch == ')':
-                counter.round -= 1
-            elif ch == '[':
-                counter.square += 1
-            elif ch == ']':
-                counter.square -= 1
-            elif ch == '{':
-                counter.curly += 1
-            elif ch == '}':
-                counter.curly -= 1
 
-            if not counter.is_valid():
+        stack = Stack()
+
+        for i, ch in enumerate(s):
+            paren = PEnum(ch)
+            if not stack.consume(paren) or stack.length > (length - i):
                 return False
-
-        if not counter.is_valid_after_stop():
-            return False
-
         return True
 
 
@@ -53,12 +73,13 @@ def test():
     # my tests
     assert not Solution().isValid('(')
     assert not Solution().isValid('(()[][]')
-    assert not Solution().isValid('(){[[[{}()'), \
-        'Need stop on the 4th element by the end'
+    assert not Solution().isValid('(){[[[{}()')
     assert not Solution().isValid('()}[]'), 'The third bracket is a closing bracket'
     # task tests
     assert Solution().isValid('()')
     assert Solution().isValid('()[]{}')
     assert not Solution().isValid('(]')
-    # check task test
+    # check task tests
     assert not Solution().isValid('([)]')
+    assert Solution().isValid('{[]}')
+    assert not Solution().isValid('){')
