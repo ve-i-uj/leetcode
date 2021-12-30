@@ -69,17 +69,20 @@ class Solution:
         return True
 
 
+TEST_CASES = {
+    '(': False,
+    '(()[][]': False,
+    '(){[[[{}()': False,
+    '()}[]': False,
+    '()': True,
+    '()[]{}': True,
+    '(]': False,
+    '([)]': False,
+    '{[]}': True,
+    '){': False,
+}
+
+
 def test():
-    # my tests
-    assert not Solution().isValid('(')
-    assert not Solution().isValid('(()[][]')
-    assert not Solution().isValid('(){[[[{}()')
-    assert not Solution().isValid('()}[]'), 'The third bracket is a closing bracket'
-    # task tests
-    assert Solution().isValid('()')
-    assert Solution().isValid('()[]{}')
-    assert not Solution().isValid('(]')
-    # check task tests
-    assert not Solution().isValid('([)]')
-    assert Solution().isValid('{[]}')
-    assert not Solution().isValid('){')
+    for case in TEST_CASES:
+        Solution().isValid(case)
