@@ -13,6 +13,8 @@ TEST_CASES = [
     (['dog', 'disk', 'doom'], 'd'),
     (['dog', '', 'doom'], 'do'),
     (['dog', 'racecar', 'car'], ''),
+
+    (['', ], ''),
 ]
 
 

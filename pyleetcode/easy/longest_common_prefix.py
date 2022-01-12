@@ -16,6 +16,9 @@ class Solution:
                 prefix = word[0:i+1]
                 vocabulary[prefix] += 1
 
+        if not vocabulary:
+            return ''
+
         prefs = sorted(vocabulary.items(), key=lambda p: (p[1], len(p[0])))
         last_prefix, cntr = prefs[-1]
         if cntr == 1:
