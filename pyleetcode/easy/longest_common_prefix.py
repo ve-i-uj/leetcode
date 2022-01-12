@@ -21,7 +21,7 @@ class Solution:
 
         prefs = sorted(vocabulary.items(), key=lambda p: (p[1], len(p[0])))
         last_prefix, cntr = prefs[-1]
-        if cntr == 1:
+        if cntr == 1 and len(strs) > 1:
             return ''
 
         return last_prefix
