@@ -1,11 +1,8 @@
 """The entry point."""
 
-from easy.valid_parentheses import test
-
 
 def main():
-    test()
-    print('Done (python)')
+    raise SystemExit('Use unit tests instead!')
 
 
 if __name__ == '__main__':
