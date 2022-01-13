@@ -3,6 +3,7 @@
 https://leetcode.com/problems/longest-common-prefix/
 """
 
+import itertools
 from typing import List
 
 
@@ -13,7 +14,7 @@ class Solution:
             return strs[0]
 
         last_index = 0
-        for i, chars in enumerate(zip(*strs)):
+        for i, chars in enumerate(itertools.zip_longest(*strs)):
             if len(set(chars)) == 1:
                 # Letters are the same.
                 continue

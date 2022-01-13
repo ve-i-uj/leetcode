@@ -17,6 +17,7 @@ TEST_CASES = [
     ([''], ''),
     (['a'], 'a'),
     (['reflower', 'flow', 'flight'], ''),
+    (['ab', 'a'], 'a'),
 
 ]
 
