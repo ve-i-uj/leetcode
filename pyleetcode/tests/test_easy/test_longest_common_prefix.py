@@ -11,11 +11,13 @@ from easy.longest_common_prefix import Solution
 TEST_CASES = [
     (['flower', 'flow', 'flight'], 'fl'),
     (['dog', 'disk', 'doom'], 'd'),
-    (['dog', '', 'doom'], 'do'),
+    (['dog', '', 'doom'], ''),
     (['dog', 'racecar', 'car'], ''),
 
     ([''], ''),
     (['a'], 'a'),
+    (['reflower', 'flow', 'flight'], ''),
+
 ]
 
 
