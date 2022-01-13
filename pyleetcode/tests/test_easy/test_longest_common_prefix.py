@@ -18,11 +18,12 @@ TEST_CASES = [
     (['a'], 'a'),
     (['reflower', 'flow', 'flight'], ''),
     (['ab', 'a'], 'a'),
+    (['flower', 'flower', 'flower', 'flower'], 'flower'),
 
 ]
 
 
-@pytest.mark.parametrize("strs,res", TEST_CASES)
+@pytest.mark.parametrize('strs,res', TEST_CASES)
 def test_1(strs: list[str], res: bool):
     assert Solution().process(strs) == res
 

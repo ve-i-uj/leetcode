@@ -21,6 +21,8 @@ class Solution:
 
             last_index = i
             break
+        else:
+            return strs[0]
 
         return strs[0][:last_index]
 
