@@ -5,6 +5,7 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 
+
 pub struct Solution {
 }
 
@@ -42,7 +43,7 @@ impl Solution {
                         println!("No key {}", pair);
                         0
                     }
-                        
+
                 };
                 start += 2;
                 continue
@@ -65,8 +66,21 @@ impl Solution {
     }
 }
 
-pub fn run() {
-    debug_assert_eq!(Solution::roman_to_int("III".to_string()), 3);
-    debug_assert_eq!(Solution::roman_to_int("LVIII".to_string()), 58);
-    debug_assert_eq!(Solution::roman_to_int("MCMXCIV".to_string()), 1994);
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_1() {
+        assert_eq!(Solution::roman_to_int("III".to_string()), 3)
+    }
+    #[test]
+    fn test_2() {
+        assert_eq!(Solution::roman_to_int("LVIII".to_string()), 58)
+    }
+    #[test]
+    fn test_3() {
+        let res = Solution::roman_to_int("MCMXCIV".to_string());
+        assert_eq!(res, 1994, "Output: `{}`", res)
+    }
 }
