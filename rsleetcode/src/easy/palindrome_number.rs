@@ -22,3 +22,21 @@ pub fn run() {
     debug_assert!(!Solution::is_palindrome(-121));
     debug_assert!(!Solution::is_palindrome(10));
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_1() {
+        assert!(Solution::is_palindrome(121))
+    }
+    #[test]
+    fn test_2() {
+        assert!(!Solution::is_palindrome(-121))
+    }
+    #[test]
+    fn test_3() {
+        assert!(!Solution::is_palindrome(10))
+    }
+}
