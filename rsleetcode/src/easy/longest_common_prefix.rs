@@ -7,7 +7,39 @@ pub struct Solution {
 
 impl Solution {
     pub fn longest_common_prefix(strs: Vec<String>) -> String {
-        String::new()
+        // The result will be None if the vector is empty.
+        let len: usize;
+        match strs.iter().min_by_key(|s| s.len()) {
+            Some(x) => len = x.len(),
+            None => return String::new(),
+        };
+        if len == 0 {
+            return String::new()
+        }
+        if strs.len() == 1 {
+            match strs.get(0) {
+                Some(res) => return res.to_string(),
+                None => return String::new(),
+            }
+        }
+
+        let mut i = 0;
+        let mut res: String = "".to_owned();
+        loop {
+            let ch: &str = &(strs.get(0).unwrap())[i..i+1];
+            for s in &strs[1..strs.len()] {
+                if &s[i..i+1] != ch {
+                    return res
+                }
+            }
+            res.push_str(ch);
+            i += 1;
+            if i >= len {
+                break
+            }
+        }
+
+        res
     }
 }
 
