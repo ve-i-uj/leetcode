@@ -11,6 +11,8 @@ from easy.remove_element import Solution
 TEST_CASES = [
     (3, [3, 2, 2, 3], 2, [2, 2]),
     (2, [0, 1, 2, 2, 3, 0, 4, 2], 5, [0, 1, 4, 0, 3]),
+
+    (2, [], 0, []),
 ]  # noqa
 
 
