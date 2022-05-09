@@ -12,4 +12,6 @@ class Solution:
         return self.strStr(*args, **kwargs)
 
     def strStr(self, haystack: str, needle: str) -> int:  # noqa: N802
-        return 0
+        if not needle:
+            return 0
+        return haystack.find(needle)
