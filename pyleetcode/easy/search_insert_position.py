@@ -3,6 +3,7 @@
 https://leetcode.com/problems/search-insert-position/
 """
 
+import bisect
 from typing import Optional, List, Any  # noqa: F401
 
 
@@ -12,4 +13,4 @@ class Solution:
         return self.searchInsert(*args, **kwargs)
 
     def searchInsert(self, nums: List[int], target: int) -> int:
-        return -1
+        return bisect.bisect_left(nums, target)
