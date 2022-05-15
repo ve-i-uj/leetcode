@@ -7,3 +7,4 @@ pub mod remove_element;
 pub mod implement_strstr;
 pub mod search_insert_position;
 pub mod maximum_subarray;
+pub mod sqrtx;
