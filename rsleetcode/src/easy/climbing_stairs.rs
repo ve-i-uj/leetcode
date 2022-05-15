@@ -2,40 +2,38 @@
 //!
 //! https://leetcode.com/problems/climbing-stairs/
 
-use std::collections::HashMap;
-
 pub struct Solution {
 }
 
 impl Solution {
     pub fn climb_stairs(n: i32) -> i32 {
-        let mut hash: HashMap<usize, usize> = HashMap::new();
-        (Solution::fork(n as usize, &mut hash) + 1) as i32
+        if n < 3 {
+            return n
+        }
+
+        let n = n as usize;
+        let mut first = 1usize;
+        let mut second = 2usize;
+        let mut tmp: usize;
+
+        for _ in 2..n {
+            tmp = first + second;
+            first = second;
+            second = tmp;
+        }
+
+        second as i32
     }
-
-    fn fork(n: usize, hash: &mut HashMap<usize, usize>) -> usize {
-        let mut res: usize = 0;
-        match hash.get(&n) {
-            Some(v) => return *v,
-            None => (),
-        }
-        if n > 0 {
-            res += Solution::fork(n-1, hash);
-        }
-        if n > 1 {
-            res += Solution::fork(n-2, hash);
-            res += 1;
-        }
-
-        hash.insert(n, res);
-        res
-    }
-
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_0() {
+        assert_eq!(Solution::climb_stairs(1), 1)
+    }
 
     #[test]
     fn test_1() {
