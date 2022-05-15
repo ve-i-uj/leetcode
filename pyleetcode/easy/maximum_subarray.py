@@ -13,4 +13,11 @@ class Solution:
         return self.maxSubArray(*args, **kwargs)
 
     def maxSubArray(self, nums: List[int]) -> int:
-        return sys.maxsize
+        local_maximum = 0
+        global_maximum = ~sys.maxsize
+
+        for x in nums:
+            local_maximum = max(x, x + local_maximum)
+            if local_maximum > global_maximum:
+                global_maximum = local_maximum
+        return global_maximum
