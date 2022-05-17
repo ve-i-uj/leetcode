@@ -9,3 +9,4 @@ pub mod search_insert_position;
 pub mod maximum_subarray;
 pub mod sqrtx;
 pub mod climbing_stairs;
+pub mod merge_sorted_array;
