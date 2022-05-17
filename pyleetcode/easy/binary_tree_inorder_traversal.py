@@ -43,6 +43,12 @@ class TreeNode:
                     vals.insert(r_i, None)
             i += 1
 
+    def __str__(self) -> str:
+        return str(self.val)
+
+    def __repr__(self) -> str:
+        return str(self)
+
 
 class Solution:
 
@@ -53,15 +59,29 @@ class Solution:
         if root is None:
             return []
 
+        stack = []
+        node = root
         res = []
 
-        def inorder(tree: TreeNode):
-            if tree is None:
-                return
-            inorder(tree.left)
-            res.append(tree.val)
-            inorder(tree.right)
+        while True:
+            if node.left is not None:
+                stack.append(node)
+                root = node
+                node = node.left
+                root.left = None
+                continue
 
-        inorder(root)
+            res.append(node.val)
+
+            if node.right is not None:
+                root = node
+                node = node.right
+                root.right = None
+                continue
+
+            if not stack:
+                break
+
+            node = stack.pop()
 
         return res
