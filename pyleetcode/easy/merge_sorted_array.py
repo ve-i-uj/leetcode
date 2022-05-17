@@ -22,18 +22,18 @@ class Solution:
             nums1[:] = nums2[:]
             return
 
-        r1 = 0
-        r2 = 0
-        for _ in range(m + n):
-            if r2 == n:
+        r1 = m - 1
+        r2 = n - 1
+        for i in reversed(range(n + m)):
+            if r2 < 0 or r1 < 0:
                 break
-            if nums2[r2] > nums1[r1]:
-                r1 += 1
-                continue
-            nums1.insert(r1, nums2[r2])
-            r1 += 1
-            r2 += 1
-        if r2 < n:
-            nums1[m+r2:] = nums2[r2:]
+            if nums1[r1] > nums2[r2]:
+                nums1[i] = nums1[r1]
+                nums1[r1] = 0
+                r1 -= 1
+            else:
+                nums1[i] = nums2[r2]
+                r2 -= 1
 
-        nums1[n + m:] = []
+        if r2 >= 0:
+            nums1[:i+1] = nums2[:r2+1]
