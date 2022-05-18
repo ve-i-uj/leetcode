@@ -28,22 +28,20 @@ pub struct Solution {}
 
 impl Solution {
     pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-        if root.is_none() {
-            return Vec::new();
-        }
-
-        fn inorder(res: &mut Vec<i32>, root: &Rc<RefCell<TreeNode>>) {
-            if root.borrow().left.is_some() {
-                inorder(res, root.borrow().left.as_ref().unwrap())
-            }
-            res.push(root.borrow().val);
-            if root.borrow().right.is_some() {
-                inorder(res, root.borrow().right.as_ref().unwrap())
-            }
-        }
-
         let mut res = Vec::new();
-        inorder(&mut res, &root.unwrap());
+        let mut stack = Vec::new();
+        let mut root = root;
+
+        while root.is_some() || !stack.is_empty() {
+            while let Some(node) = root {
+                stack.push(Rc::clone(&node));
+                root = node.borrow().left.clone();
+            }
+            if let Some(node) = stack.pop() {
+                res.push(node.borrow().val);
+                root = node.borrow().right.clone();
+            }
+        }
 
         res
     }
