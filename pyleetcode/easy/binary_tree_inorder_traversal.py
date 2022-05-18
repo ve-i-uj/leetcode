@@ -56,32 +56,14 @@ class Solution:
         return self.inorderTraversal(*args, **kwargs)
 
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if root is None:
-            return []
-
         stack = []
-        node = root
         res = []
-
-        while True:
-            if node.left is not None:
-                stack.append(node)
-                root = node
-                node = node.left
-                root.left = None
-                continue
-
-            res.append(node.val)
-
-            if node.right is not None:
-                root = node
-                node = node.right
-                root.right = None
-                continue
-
-            if not stack:
-                break
-
-            node = stack.pop()
+        while root is not None or stack:
+            while root is not None:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            res.append(root.val)
+            root = root.right
 
         return res
