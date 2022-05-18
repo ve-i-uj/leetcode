@@ -10,3 +10,4 @@ pub mod maximum_subarray;
 pub mod sqrtx;
 pub mod climbing_stairs;
 pub mod merge_sorted_array;
+pub mod binary_tree_inorder_traversal;
