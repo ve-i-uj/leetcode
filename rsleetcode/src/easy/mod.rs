@@ -12,3 +12,4 @@ pub mod climbing_stairs;
 pub mod merge_sorted_array;
 pub mod binary_tree_inorder_traversal;
 pub mod symmetric_tree;
+pub mod maximum_depth_of_binary_tree;
