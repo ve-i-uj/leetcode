@@ -29,18 +29,14 @@ struct Solution {}
 
 impl Solution {
     pub fn max_depth(root: OptionTree) -> i32 {
-        fn count(depth: usize, root: &OptionTree) -> usize {
-            match root {
-                Some(tree) => {
-                    let l_d = count(depth + 1, &tree.borrow().left);
-                    let r_d = count(depth + 1, &tree.borrow().right);
-                    l_d.max(r_d)
-                }
-                None => depth,
-            }
-        }
+        let tree = match root {
+            Some(t) => t,
+            None => return 0
+        };
+        let l_depth = Self::max_depth(tree.borrow().left.clone());
+        let r_depth = Self::max_depth(tree.borrow().right.clone());
 
-        count(0, &root) as i32
+        1 + l_depth.max(r_depth)
     }
 }
 
