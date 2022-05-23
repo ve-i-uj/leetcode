@@ -26,83 +26,29 @@ impl TreeNode {
     }
 }
 
-enum Direction {
-    Left,
-    Right,
-}
-
-struct Traverser {
-    direction: Direction,
-    stack: Vec<OptionTree>,
-}
-
-impl Traverser {
-    fn new(root: OptionTree, direction: Direction) -> Traverser {
-        let mut stack: Vec<OptionTree> = vec![];
-        stack.push(root.clone());
-        Traverser { direction, stack }
-    }
-}
-
-#[derive(PartialEq)]
-enum NodeValue {
-    Value(i32),
-    NoValue,
-}
-
-impl Iterator for Traverser {
-    type Item = NodeValue;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        match self.stack.pop() {
-            Some(node) => {
-                let node_value = match node {
-                    Some(rc_tree) => {
-                        let left = rc_tree.borrow().left.clone();
-                        let right = rc_tree.borrow().right.clone();
-                        if left.is_some() || right.is_some() {
-                            match self.direction {
-                                Direction::Left => {
-                                    self.stack.push(right);
-                                    self.stack.push(left);
-                                },
-                                Direction::Right => {
-                                    self.stack.push(left);
-                                    self.stack.push(right);
-                                }
-                            }
-                        }
-                        NodeValue::Value(rc_tree.borrow().val)
-                    },
-                    None => NodeValue::NoValue,
-                };
-                return Some(node_value)
-            },
-            None => return None
-        }
-    }
-}
-
 pub struct Solution {}
 
 impl Solution {
-    pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        let tree = root.unwrap();
-        let left = RefCell::borrow(&*tree).left.clone();
-        let right = RefCell::borrow(&*tree).right.clone();
+    pub fn is_symmetric(root: OptionTree) -> bool {
+        fn compare(left: OptionTree, right: OptionTree) -> bool {
+            if left.is_none() && right.is_none() {
+                return true
+            };
 
-        let mut l_trav = Traverser::new(left, Direction::Left);
-        let mut r_trav = Traverser::new(right, Direction::Right);
-
-        let mut l_val = l_trav.next();
-        let mut r_val = r_trav.next();
-
-        while l_val.is_some() && r_val.is_some() && l_val == r_val {
-            l_val = l_trav.next();
-            r_val = r_trav.next();
+            if let (Some(l_node), Some(r_node)) = (left, right) {
+                if l_node.borrow().val != r_node.borrow().val {
+                    return false
+                };
+                compare(l_node.borrow().left.clone(), r_node.borrow().right.clone())
+                && compare(r_node.borrow().left.clone(), l_node.borrow().right.clone())
+            } else {
+                false
+            }
         }
 
-        l_val == r_val
+        let root = root.unwrap();
+        let res = compare(root.borrow().left.clone(), root.borrow().right.clone());
+        res
     }
 }
 
