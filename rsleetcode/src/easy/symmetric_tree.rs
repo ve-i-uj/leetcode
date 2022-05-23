@@ -30,25 +30,29 @@ pub struct Solution {}
 
 impl Solution {
     pub fn is_symmetric(root: OptionTree) -> bool {
-        fn compare(left: OptionTree, right: OptionTree) -> bool {
-            if left.is_none() && right.is_none() {
-                return true
-            };
+        let root = root.unwrap();
+        let mut l_stack: Vec<OptionTree> = vec![root.borrow().left.clone()];
+        let mut r_stack: Vec<OptionTree> = vec![root.borrow().right.clone()];
 
+        while !l_stack.is_empty() && !r_stack.is_empty() {
+            let (left, right) = (l_stack.pop().unwrap(), r_stack.pop().unwrap());
+            if left.is_none() && right.is_none() {
+                continue;
+            };
             if let (Some(l_node), Some(r_node)) = (left, right) {
                 if l_node.borrow().val != r_node.borrow().val {
                     return false
-                };
-                compare(l_node.borrow().left.clone(), r_node.borrow().right.clone())
-                && compare(r_node.borrow().left.clone(), l_node.borrow().right.clone())
+                }
+                l_stack.push(l_node.borrow().right.clone());
+                l_stack.push(l_node.borrow().left.clone());
+                r_stack.push(r_node.borrow().left.clone());
+                r_stack.push(r_node.borrow().right.clone());
             } else {
-                false
+                return false;
             }
         }
 
-        let root = root.unwrap();
-        let res = compare(root.borrow().left.clone(), root.borrow().right.clone());
-        res
+        true
     }
 }
 
