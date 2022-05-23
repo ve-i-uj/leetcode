@@ -4,8 +4,7 @@
 
 use std::cell::RefCell;
 use std::rc::Rc;
-type Tree = Rc<RefCell<TreeNode>>;
-type OptionTree = Option<Tree>;
+type OptionTree = Option<Rc<RefCell<TreeNode>>>;
 
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
@@ -30,18 +29,18 @@ struct Solution {}
 
 impl Solution {
     pub fn max_depth(root: OptionTree) -> i32 {
-        fn count(depth: usize, root: OptionTree) -> usize {
+        fn count(depth: usize, root: &OptionTree) -> usize {
             match root {
                 Some(tree) => {
-                    let l_d = count(depth + 1, tree.borrow().left.clone());
-                    let r_d = count(depth + 1, tree.borrow().right.clone());
+                    let l_d = count(depth + 1, &tree.borrow().left);
+                    let r_d = count(depth + 1, &tree.borrow().right);
                     l_d.max(r_d)
                 }
                 None => depth,
             }
         }
 
-        count(0, root) as i32
+        count(0, &root) as i32
     }
 }
 
