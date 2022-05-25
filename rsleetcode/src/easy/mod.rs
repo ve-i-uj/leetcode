@@ -13,3 +13,4 @@ pub mod merge_sorted_array;
 pub mod binary_tree_inorder_traversal;
 pub mod symmetric_tree;
 pub mod maximum_depth_of_binary_tree;
+pub mod convert_sorted_array_to_binary_search_tree;
