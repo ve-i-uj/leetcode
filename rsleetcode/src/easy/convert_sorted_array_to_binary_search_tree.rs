@@ -30,20 +30,20 @@ pub struct Solution {}
 
 impl Solution {
     pub fn sorted_array_to_bst(nums: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-        fn create(l: usize, r: usize, nums: &Vec<i32>) -> OptionTree {
-            if nums.is_empty() || l >= r {
-                return None;
-            };
-            let m = (l + r) / 2;
-            let mut node = TreeNode::new(nums[m]);
-
-            node.left = create(l, m, nums);
-            node.right = create(m + 1, r, nums);
-
-            Some(Rc::new(RefCell::new(node)))
+        fn create(nums: &[i32]) -> OptionTree {
+            match nums.len() {
+                0 => None,
+                n => {
+                    let m = n / 2;
+                    let mut node = TreeNode::new(nums[m]);
+                    node.left = create(&nums[0..m]);
+                    node.right = create(&nums[m+1..]);
+                    Some(Rc::new(RefCell::new(node)))
+                }
+            }
         }
 
-        create(0, nums.len(), &nums)
+        create(nums.as_slice())
     }
 }
 
