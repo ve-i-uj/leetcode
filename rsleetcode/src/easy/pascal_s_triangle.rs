@@ -6,39 +6,13 @@ pub struct Solution {}
 
 impl Solution {
     pub fn generate(num_rows: i32) -> Vec<Vec<i32>> {
-        if num_rows == 1 {
-            return vec![vec![1]]
-        }
-        else if num_rows == 2 {
-            return vec![vec![1], vec![1, 1]]
-        }
-        else if num_rows == 3 {
-            return vec![vec![1], vec![1, 1], vec![1, 2, 1]]
-        }
-        let mut res = vec![vec![1], vec![1, 1], vec![1, 2, 1]];
-        let mut n = 4;
-        let (mut i, mut j) = (0, 1);
-
-        while n <= num_rows {
-            let mut new = vec![1];
-            {
-                let last = res.last().unwrap();
-                while j < last.len() {
-                    new.push(last[i] + last[j]);
-                    i += 1;
-                    j += 1;
-                }
-                new.push(1);
+        (0..num_rows as usize).scan(Vec::new(), |state, n| {
+            for i in (1..n).rev() {
+                state[i] += state[i - 1];
             }
-
-            n += 1;
-            i = 0;
-            j = 1;
-
-            res.push(new);
-        }
-
-        res
+            state.push(1);
+            Some(state.clone())
+        }).collect()
     }
 }
 
