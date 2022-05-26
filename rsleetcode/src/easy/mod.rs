@@ -15,3 +15,4 @@ pub mod symmetric_tree;
 pub mod maximum_depth_of_binary_tree;
 pub mod convert_sorted_array_to_binary_search_tree;
 pub mod pascal_s_triangle;
+pub mod best_time_to_buy_and_sell_stock;
