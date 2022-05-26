@@ -2,9 +2,8 @@
 //!
 //! https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 
-use std::cell::{Ref, RefCell};
+use std::cell::RefCell;
 use std::rc::Rc;
-type Tree = Rc<RefCell<TreeNode>>;
 type OptionTree = Option<Rc<RefCell<TreeNode>>>;
 
 // Definition for a binary tree node.
