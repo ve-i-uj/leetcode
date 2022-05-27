@@ -7,28 +7,17 @@ pub struct Solution {
 
 impl Solution {
     pub fn is_palindrome(s: String) -> bool {
-        if s.len() <= 1 {
-            return true
-        }
-        let chars: Vec<char> = s.chars().collect();
-        let mut l: i32 = 0;
-        let mut r: i32 = (chars.len() - 1) as i32;
-        let len = chars.len() as i32;
+        let mut iter = s.chars().filter_map(|ch| {
+            match ch.is_alphanumeric() {
+                true => Some(ch.to_ascii_lowercase()),
+                false => None
+            }
+        });
 
-        while l <= r && l < len && r >= 0 {
-            if !chars[l as usize].is_alphanumeric() {
-                l += 1;
-                continue;
-            }
-            if !chars[r as usize].is_alphanumeric() {
-                r -= 1;
-                continue;
-            }
-            if chars[l as usize].to_lowercase().to_string() != chars[r as usize].to_lowercase().to_string() {
+        while let (Some(l), Some(r)) = (iter.next(), iter.next_back()) {
+            if l != r {
                 return false
             }
-            l += 1;
-            r -= 1;
         }
 
         true
