@@ -2,76 +2,41 @@
 //!
 //! https://leetcode.com/problems/min-stack/
 
-use std::collections::VecDeque;
-
-#[derive(Debug, PartialEq, Eq)]
-pub struct MinStack {
-    stack: Vec<i32>,
-    ordered: VecDeque<i32>,
+#[derive(Debug, Default)]
+struct MinStack {
+    stack: Vec<(i32, i32)> // (val, min_val)
 }
 
 impl MinStack {
 
     fn new() -> Self {
-        MinStack {
-            stack: vec![],
-            ordered: VecDeque::new(),
-        }
+        MinStack::default()
     }
 
     fn push(&mut self, val: i32) {
-        if let Some(last) = self.ordered.back() {
-            if last <= &val {
-                self.ordered.push_back(val);
-                self.stack.push(val);
-                return;
-            }
-        }
-        if let Some(first) = self.ordered.front() {
-            if first >= &val {
-                self.ordered.push_front(val);
-                self.stack.push(val);
-                return
-            }
-        }
-        let i = match self.ordered.binary_search(&val) {
-            Ok(i) => i,
-            Err(i) => i,
+        let mut min = val;
+        if let Some((_, min_val)) = self.stack.last() {
+            min = min.min(min_val.clone());
         };
-        self.ordered.insert(i, val);
-        self.stack.push(val);
+        self.stack.push((val, min));
     }
 
     fn pop(&mut self) {
-        let val = self.stack.pop().unwrap();
-        if let Some(last) = self.ordered.back() {
-            if &val == last {
-                self.ordered.pop_back();
-                return;
-            }
-        }
-        if let Some(first) = self.ordered.front() {
-            if &val == first {
-                self.ordered.pop_front();
-                return
-            }
-        }
-        let i = self.ordered.binary_search(&val).ok().unwrap();
-        self.ordered.remove(i);
+        self.stack.pop();
     }
 
     fn top(&self) -> i32 {
-        self.stack.last().unwrap().clone()
+        self.stack.last().unwrap().0
     }
 
     fn get_min(&self) -> i32 {
-        self.ordered.front().unwrap().clone()
+        self.stack.last().unwrap().1
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::MinStack;
+    use super::*;
 
     #[test]
     fn test_1() {
