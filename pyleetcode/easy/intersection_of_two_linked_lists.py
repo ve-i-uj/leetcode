@@ -16,53 +16,55 @@ class ListNode:
     @staticmethod
     def create(intersectVal: int, listA: list[int], listB: list[int],
                skipA: int, skipB: int) -> tuple[ListNode, ListNode, ListNode]:
+        stack_a = []
+        stack_b = []
+        for v in listA:
+            stack_a.append(ListNode(v))
+        for v in listB:
+            stack_b.append(ListNode(v))
+        if len(stack_a) > len(stack_b):
+            stack_a[skipA:] = stack_b[skipB:]
+        else:
+            stack_b[skipB:] = stack_a[skipA:]
+
         common_node = None
+        if stack_a[skipA:skipA + 1]:
+            common_node = stack_a[skipA:skipA + 1][0]
 
-        node = ListNode(listA[0])
-        headA = node
-        i = 2
-        common_node = None
-        while i <= len(listA):
-            node.next = ListNode(listA[i - 1])
+        node = stack_a.pop(0)
+        head_a = node
+        while stack_a:
+            node.next = stack_a.pop(0)
             node = node.next
-            if i > skipA and common_node is None:
-                common_node = node
-            i += 1
 
-        node = ListNode(listB[0])
-        headB = node
-        i = 2
-        while i <= skipB and i <= len(listB):
-            node.next = ListNode(listB[i - 1])
+        node = stack_b.pop(0)
+        head_b = node
+        while stack_b:
+            node.next = stack_b.pop(0)
             node = node.next
-            i += 1
-        if common_node is not None:
-            node.next = common_node
 
-        return headA, headB, common_node
+        return head_a, head_b, common_node
 
 
 class Solution:
 
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        stack_a: list[ListNode] = []
-        stack_b: list[ListNode] = []
-        node = headA
-        while node is not None:
-            stack_a.append(node)
-            node = node.next
-        node = headB
-        while node is not None:
-            stack_b.append(node)
-            node = node.next
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode
+                            ) -> Optional[ListNode]:
+        ptr1 = headA
+        ptr2 = headB
+        while ptr1 is not ptr2:
+            ptr1 = ptr1.next
+            ptr2 = ptr2.next
 
-        last_node = None
-        for node_a, node_b in zip(reversed(stack_a), reversed(stack_b)):
-            if node_a is not node_b:
-                break
-            last_node = node_a
+            if ptr1 is ptr2:
+                return ptr1
 
-        return last_node
+            if ptr1 is None:
+                ptr1 = headB
+            if ptr2 is None:
+                ptr2 = headA
+
+        return ptr1
 
     def process(self, *args, **kwargs):
         return self.getIntersectionNode(*args, **kwargs)
