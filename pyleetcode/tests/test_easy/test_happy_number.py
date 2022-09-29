@@ -11,6 +11,7 @@ from easy.happy_number import Solution
 TEST_CASES = [
     (19, True),
     (2, False),
+    (10, True),
 ]  # noqa
 
 
