@@ -26,17 +26,20 @@ class Solution:
         return self.reverseList(*args, **kwargs)
 
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        nodes = []
-        root = head
-        while root is not None:
-            nodes.append(root)
-            root = root.next
+        if head is None:
+            return None
+        if head.next is None:
+            return head
 
-        root = ListNode()
-        node = root
-        while nodes:
-            node.next = nodes.pop()
-            node = node.next
-        node.next = None
+        parent = head
+        child = head.next
+        head = head.next.next
+        child.next = parent
+        parent.next = None
+        while head is not None:
+            parent = child
+            child = head
+            head = head.next
+            child.next = parent
 
-        return root.next
+        return child
