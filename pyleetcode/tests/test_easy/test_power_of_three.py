@@ -13,6 +13,9 @@ TEST_CASES = [
     (0, False),
     (-1, False),
     (45, False),
+    (-3, False),
+    (-9, False),
+    (-27, False),
 ]
 
 
