@@ -26,17 +26,33 @@ class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         if head is None:
             return True
-        root = head
-        stack = [root]
-        while root.next is not None:
-            stack.append(root.next)
-            root = root.next
 
-        left = 0
-        right = len(stack) - 1
-        while left <= right:
-            if stack[left].val != stack[right].val:
+        fp = head
+        sp = head
+        while fp is not None and fp.next is not None:
+            sp: ListNode = sp.next  # type: ignore
+            fp = fp.next.next
+
+        p1: Optional[ListNode] = None
+        p2: ListNode = sp
+        p3: Optional[ListNode] = sp.next
+        p2.next = p1
+        while p3 is not None:
+            p1 = p2
+            p2 = p3
+            p3 = p3.next
+
+            p2.next = p1
+
+        head2 = p2
+
+        while head2 is not None:
+            if head.val != head2.val:
                 return False
-            left += 1
-            right -= 1
+
+            head = head.next
+            head2 = head2.next
+
         return True
+
+

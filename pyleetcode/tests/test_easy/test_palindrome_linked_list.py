@@ -12,6 +12,7 @@ from easy.palindrome_linked_list import Solution, ListNode
 TEST_CASES = [
     ([1, 2, 2, 1], True),
     ([1, 2], False),
+    ([1, 2, 3, 2, 1], True),
 ]
 
 
