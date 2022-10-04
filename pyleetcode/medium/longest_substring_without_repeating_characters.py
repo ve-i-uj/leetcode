@@ -12,27 +12,14 @@ class Solution:
         return self.lengthOfLongestSubstring(*args, **kwargs)
 
     def lengthOfLongestSubstring(self, s: str) -> int:
-        res = 0
-        chs = set()
-        for i in range(len(s)):
-            for ch in s[i:]:
-                if ch in chs:
-                    res = max(res, len(chs))
-                    break
-                else:
-                    chs.add(ch)
+        chs = {}
+        left = 0
+        max_len = 0
 
-            res = max(res, len(chs))
-            chs.clear()
+        for right, ch in enumerate(s):
+            if ch in chs:
+                left = max(left, chs[ch] + 1)
+            chs[ch] = right
+            max_len = max(max_len, right - left + 1)
 
-            for ch in s[:i]:
-                if ch in chs:
-                    res = max(res, len(chs))
-                    break
-                else:
-                    chs.add(ch)
-
-            res = max(res, len(chs))
-            chs.clear()
-
-        return res
+        return max_len
