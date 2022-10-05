@@ -1,54 +1,53 @@
+"""2. Add Two Numbers
+
+https://leetcode.com/problems/add-two-numbers/
+"""
+
 import itertools
-from typing import Optional
+from typing import Optional, List, Any  # noqa: F401
 
-# Definition for singly-linked list.
+
 class ListNode:
-
     def __init__(self, val=0, next=None):
         self.val = val
-        self.next = next
+        self.next: Optional[ListNode] = next
 
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}(val={self.val})'
 
-def to_list(list_node: ListNode) -> list:
-    lst = []
-    node = list_node
-    lst.append(node.val)
-    while node.next is not None:
-        node = node.next
-        lst.append(node.val)
-    return lst
-
-
-def to_list_node(lst: list[int]) -> ListNode:
-    root = ListNode(lst[0])
-    last = root
-    for val in lst[1:]:
-        node = ListNode(val)
-        last.next = node
-        last = node
-
-    return root
+    def __repr__(self) -> str:
+        return str(self)
 
 
 class Solution:
 
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        lst1 = to_list(l1)
-        lst2 = to_list(l2)
-        first = []
-        second = []
-        for i, j in itertools.zip_longest(lst1, lst2, fillvalue=0):
-            first.append(str(i))
-            second.append(str(j))
-        first = ''.join(reversed(first))
-        second = ''.join(reversed(first))
+    def process(self, *args, **kwargs):  # noqa: N802
+        return self.addTwoNumbers(*args, **kwargs)
 
-        total = int(first) + int(second)
-        res = [int(i) for i in reversed(str(total))]
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]
+                      ) -> Optional[ListNode]:
+        if l1 is None:
+            return l2
+        if l2 is None:
+            return l1
 
-        return to_list_node(res)
+        stack1: list[int] = []
+        stack2: list[int] = []
+        while l1 is not None or l2 is not None:
+            if l1 is not None:
+                stack1.append(l1.val)
+                l1 = l1.next
+            if l2 is not None:
+                stack2.append(l2.val)
+                l2 = l2.next
 
+        num1 = sum((n * (10 ** i) for i, n in enumerate(stack1)))
+        num2 = sum((n * (10 ** i) for i, n in enumerate(stack2)))
 
-if __name__ == '__main__':
-    res = Solution().addTwoNumber(to_list_node([2,4,3]), to_list_node([5, 6, 4]))
-    print(res)
+        root = ListNode()
+        res = root
+        for i in reversed(str(num1 + num2)):
+            root.next = ListNode(int(i))
+            root = root.next
+
+        return res.next
