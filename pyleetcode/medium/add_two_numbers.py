@@ -44,10 +44,15 @@ class Solution:
                 l2 = l2.next
                 j += 1
 
+        num = num1 + num2
+        if num == 0:
+            return ListNode()
+
         root = ListNode()
         res = root
-        for i in reversed(str(num1 + num2)):
-            root.next = ListNode(int(i))
+        while num > 0:
+            num, digit = divmod(num, 10)
+            root.next = ListNode(digit)
             root = root.next
 
         return res.next
