@@ -31,18 +31,18 @@ class Solution:
         if l2 is None:
             return l1
 
-        stack1: list[int] = []
-        stack2: list[int] = []
+        num1 = 0
+        num2 = 0
+        i, j = 0, 0
         while l1 is not None or l2 is not None:
             if l1 is not None:
-                stack1.append(l1.val)
+                num1 += l1.val * (10 ** i)
                 l1 = l1.next
+                i += 1
             if l2 is not None:
-                stack2.append(l2.val)
+                num2 += l2.val * (10 ** j)
                 l2 = l2.next
-
-        num1 = sum((n * (10 ** i) for i, n in enumerate(stack1)))
-        num2 = sum((n * (10 ** i) for i, n in enumerate(stack2)))
+                j += 1
 
         root = ListNode()
         res = root
