@@ -31,28 +31,23 @@ class Solution:
         if l2 is None:
             return l1
 
-        num1 = 0
-        num2 = 0
-        i, j = 0, 0
-        while l1 is not None or l2 is not None:
-            if l1 is not None:
-                num1 += l1.val * (10 ** i)
-                l1 = l1.next
-                i += 1
-            if l2 is not None:
-                num2 += l2.val * (10 ** j)
-                l2 = l2.next
-                j += 1
-
-        num = num1 + num2
-        if num == 0:
-            return ListNode()
-
         root = ListNode()
         res = root
-        while num > 0:
-            num, digit = divmod(num, 10)
+        the_rest = 0
+        while l1 is not None or l2 is not None:
+            num1 = l1.val if l1 is not None else 0
+            num2 = l2.val if l2 is not None else 0
+
+            the_rest, digit = divmod((num1 + num2 + the_rest), 10)
             root.next = ListNode(digit)
             root = root.next
+
+            if l1 is not None:
+                l1 = l1.next
+            if l2 is not None:
+                l2 = l2.next
+
+        if the_rest != 0:
+            root.next = ListNode(the_rest)
 
         return res.next
