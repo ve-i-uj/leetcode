@@ -13,21 +13,22 @@ class Solution:
 
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
-        table = [[False] * n for _ in range(n)]
+        left = 0
+        pali_start = 0
+        pali_len = 1
         for i in range(n):
-            table[i][i] = True
+            right = i
+            while right < n and s[right] == s[i]:
+                right += 1
 
-        pali_start: int = 0
-        max_pali_len: int = 1
+            left = i - 1
+            while left >= 0 and right < n and s[left] == s[right]:
+                left -= 1
+                right += 1
 
-        for right in range(0, n):
-            for left in range(right - 1, -1, -1):
-                if (right - left == 1 or table[left + 1][right - 1]) \
-                        and s[left] == s[right]:
-                    table[left][right] = True
-                    pali_len = right - left + 1
-                    if max_pali_len < pali_len:
-                        pali_start = left
-                        max_pali_len = pali_len
+            left = left + 1
+            if pali_len < right - left:
+                pali_len = right - left
+                pali_start = left
 
-        return s[pali_start: pali_start + max_pali_len]
+        return s[pali_start: pali_start + pali_len]
