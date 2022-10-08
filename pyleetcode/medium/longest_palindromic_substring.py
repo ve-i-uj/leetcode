@@ -13,16 +13,18 @@ class Solution:
 
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
-        table: dict[tuple[int, int], bool] = {(i, i): True for i in range(n)}
+        table = [[False] * n for _ in range(n)]
+        for i in range(n):
+            table[i][i] = True
 
         pali_start: int = 0
         max_pali_len: int = 1
 
         for right in range(0, n):
             for left in range(right - 1, -1, -1):
-                if (right - left == 1 or table.get((left + 1, right - 1), False)) \
+                if (right - left == 1 or table[left + 1][right - 1]) \
                         and s[left] == s[right]:
-                    table[(left, right)] = True
+                    table[left][right] = True
                     pali_len = right - left + 1
                     if max_pali_len < pali_len:
                         pali_start = left
