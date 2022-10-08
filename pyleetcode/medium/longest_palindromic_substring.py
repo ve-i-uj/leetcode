@@ -12,35 +12,20 @@ class Solution:
         return self.longestPalindrome(*args, **kwargs)
 
     def longestPalindrome(self, s: str) -> str:
-        if not s:
-            return s
         n = len(s)
-        table: dict[tuple[int, int], bool] = {}
-        max_pali = s[0]
+        table: dict[tuple[int, int], bool] = {(i, i): True for i in range(n)}
 
-        def is_pali(left: int, right: int) -> bool:
-            if (left, right) in table:
-                return table[(left, right)]
+        pali_start: int = 0
+        max_pali_len: int = 1
 
-            if left == right and s[left] == s[right]:
-                # a
-                table[(left, right)] = True
-            elif right - left == 1 and s[left] == s[right]:
-                # aa
-                table[(left, right)] = True
-            elif right - left > 1 and s[left] == s[right] \
-                    and is_pali(left + 1, right - 1):
-                # "aba" and "abba"
-                table[(left, right)] = True
-            else:
-                table[(left, right)] = False
-
-            return table[(left, right)]
-
-        left = 0
-        for right, ch in enumerate(s):
+        for right in range(0, n):
             for left in range(right - 1, -1, -1):
-                if is_pali(left, right):
-                    max_pali = max(max_pali, s[left: right + 1], key=len)
+                if (right - left == 1 or table.get((left + 1, right - 1), False)) \
+                        and s[left] == s[right]:
+                    table[(left, right)] = True
+                    pali_len = right - left + 1
+                    if max_pali_len < pali_len:
+                        pali_start = left
+                        max_pali_len = pali_len
 
-        return max_pali
+        return s[pali_start: pali_start + max_pali_len]
