@@ -12,12 +12,14 @@ class Solution:
         return self.maxArea(*args, **kwargs)
 
     def maxArea(self, height: List[int]) -> int:
+        left = 0
+        right = len(height) - 1
         res = 0
-        for i, h1 in enumerate(height):
-            for j, h2 in enumerate(height):
-                if i == j:
-                    continue
-
-                res = max(res, (j - i) * min(h1, h2))
+        while left < right:
+            res = max(res, min(height[left], height[right]) * (right - left))
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
 
         return res
