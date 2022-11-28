@@ -15,7 +15,9 @@ TEST_CASES = [
     (0, 0),
     (1534236469, 0),
     (-2147483412, -2143847412),
-]  # noqa
+    (2147483647, 0),
+    (-1563847412, 0),
+]
 
 
 @pytest.mark.parametrize('x, output', TEST_CASES)
