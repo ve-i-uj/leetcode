@@ -13,7 +13,13 @@ class Solution:
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         sorted_nums = sorted(nums)
+        if len(sorted_nums) < 3:
+            return []
+
         res = set()
+
+        if sorted_nums[0] > 0 or sorted_nums[-1] < 0:
+            return []
 
         for i in range(len(sorted_nums)):
             left, right = i + 1, len(sorted_nums) - 1
@@ -21,7 +27,13 @@ class Solution:
                 s = sorted_nums[i] + sorted_nums[left] + sorted_nums[right]
                 if s == 0:
                     res.add(tuple(sorted([sorted_nums[i], sorted_nums[left], sorted_nums[right]])))
-                if s > 0:
+                    left += 1
+
+                    while left < right and sorted_nums[left] == sorted_nums[left - 1]:
+                        left += 1
+                    while left < right and sorted_nums[right] == sorted_nums[right - 1]:
+                        right -= 1
+                elif s > 0:
                     right -= 1
                 else:
                     left += 1
