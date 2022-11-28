@@ -12,17 +12,18 @@ class Solution:
         return self.threeSum(*args, **kwargs)
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        length = len(nums)
+        sorted_nums = sorted(nums)
         res = set()
-        for i in range(length):
-            for j in range(length):
-                if j == i:
-                    continue
-                for k in range(length):
-                    if k == j or k == i:
-                        continue
 
-                    if nums[i] + nums[j] + nums[k] == 0:
-                        res.add(tuple(sorted([nums[i], nums[j], nums[k]])))
+        for i in range(len(sorted_nums)):
+            left, right = i + 1, len(sorted_nums) - 1
+            while left < right:
+                s = sorted_nums[i] + sorted_nums[left] + sorted_nums[right]
+                if s == 0:
+                    res.add(tuple(sorted([sorted_nums[i], sorted_nums[left], sorted_nums[right]])))
+                if s > 0:
+                    right -= 1
+                else:
+                    left += 1
 
         return list(list(t) for t in res)
