@@ -5,7 +5,7 @@ https://leetcode.com/problems/first-unique-character-in-a-string/
 
 import pytest
 
-from easy.first_unique_character_in_a_string import Solution
+from pyleetcode.easy.first_unique_character_in_a_string import Solution
 
 
 TEST_CASES = [

@@ -5,7 +5,7 @@ https://leetcode.com/problems/valid-palindrome/
 
 import pytest
 
-from easy.valid_palindrome import Solution
+from pyleetcode.easy.valid_palindrome import Solution
 
 
 TEST_CASES = [

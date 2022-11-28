@@ -5,7 +5,7 @@ https://leetcode.com/problems/excel-sheet-column-number/
 
 import pytest
 
-from easy.excel_sheet_column_number import Solution
+from pyleetcode.easy.excel_sheet_column_number import Solution
 
 
 TEST_CASES = [

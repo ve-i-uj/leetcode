@@ -5,7 +5,7 @@ https://leetcode.com/problems/sqrtx/
 
 import pytest
 
-from easy.sqrtx import Solution
+from pyleetcode.easy.sqrtx import Solution
 
 
 TEST_CASES = [

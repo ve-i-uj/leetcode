@@ -5,7 +5,7 @@ https://leetcode.com/problems/reverse-integer/
 
 import pytest
 
-from medium.reverse_integer import Solution
+from pyleetcode.medium.reverse_integer import Solution
 
 
 TEST_CASES = [

@@ -5,7 +5,7 @@ https://leetcode.com/problems/merge-two-sorted-lists/
 
 import pytest
 
-from easy.merge_two_sorted_lists import Solution, to_node, ListNode, \
+from pyleetcode.easy.merge_two_sorted_lists import Solution, to_node, ListNode, \
     ExtListNode
 
 

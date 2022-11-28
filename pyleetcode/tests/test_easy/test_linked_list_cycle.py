@@ -5,7 +5,7 @@ https://leetcode.com/problems/linked-list-cycle/
 
 import pytest
 
-from easy.linked_list_cycle import Solution, ListNode
+from pyleetcode.easy.linked_list_cycle import Solution, ListNode
 
 
 TEST_CASES = [

@@ -6,7 +6,7 @@ https://leetcode.com/problems/symmetric-tree/
 from typing import Optional
 import pytest
 
-from easy.symmetric_tree import Solution, TreeNode
+from pyleetcode.easy.symmetric_tree import Solution, TreeNode
 
 
 TEST_CASES = [

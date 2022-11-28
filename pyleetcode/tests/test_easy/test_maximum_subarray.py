@@ -5,7 +5,7 @@ https://leetcode.com/problems/maximum-subarray/
 
 import pytest
 
-from easy.maximum_subarray import Solution
+from pyleetcode.easy.maximum_subarray import Solution
 
 
 TEST_CASES = [

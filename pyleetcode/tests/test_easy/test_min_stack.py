@@ -5,7 +5,7 @@ https://leetcode.com/problems/min-stack/
 
 import pytest
 
-from easy.min_stack import MinStack
+from pyleetcode.easy.min_stack import MinStack
 
 
 def test_1():

@@ -5,7 +5,7 @@ https://leetcode.com/problems/longest-common-prefix/
 
 import pytest
 
-from easy.longest_common_prefix import Solution
+from pyleetcode.easy.longest_common_prefix import Solution
 
 
 TEST_CASES = [

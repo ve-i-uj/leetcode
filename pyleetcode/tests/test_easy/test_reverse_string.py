@@ -5,7 +5,7 @@ https://leetcode.com/problems/reverse-string/
 
 import pytest
 
-from easy.reverse_string import Solution
+from pyleetcode.easy.reverse_string import Solution
 
 
 TEST_CASES = [

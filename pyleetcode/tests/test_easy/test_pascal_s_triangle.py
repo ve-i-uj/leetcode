@@ -5,7 +5,7 @@ https://leetcode.com/problems/pascal-s-triangle/
 
 import pytest
 
-from easy.pascal_s_triangle import Solution
+from pyleetcode.easy.pascal_s_triangle import Solution
 
 
 TEST_CASES = [

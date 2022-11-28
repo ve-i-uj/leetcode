@@ -5,7 +5,7 @@ https://leetcode.com/problems/power-of-three/
 
 import pytest
 
-from easy.power_of_three import Solution
+from pyleetcode.easy.power_of_three import Solution
 
 
 TEST_CASES = [

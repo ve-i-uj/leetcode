@@ -5,7 +5,7 @@ https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 
 import pytest
 
-from easy.convert_sorted_array_to_binary_search_tree import Solution, TreeNode
+from pyleetcode.easy.convert_sorted_array_to_binary_search_tree import Solution, TreeNode
 
 
 TEST_CASES = [

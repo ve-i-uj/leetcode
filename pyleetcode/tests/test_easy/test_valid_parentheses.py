@@ -5,7 +5,7 @@ https://leetcode.com/problems/valid-parentheses/
 
 import pytest
 
-from easy.valid_parentheses import Solution, TEST_CASES
+from pyleetcode.easy.valid_parentheses import Solution, TEST_CASES
 
 
 @pytest.mark.parametrize("s,res", TEST_CASES.items())
