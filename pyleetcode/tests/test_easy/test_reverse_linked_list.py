@@ -6,7 +6,7 @@ https://leetcode.com/problems/reverse-linked-list/
 from typing import Optional
 import pytest
 
-from easy.reverse_linked_list import Solution, ListNode
+from pyleetcode.easy.reverse_linked_list import Solution, ListNode
 
 
 def to_node(lst: list[int]) -> Optional[ListNode]:

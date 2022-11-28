@@ -5,7 +5,7 @@ https://leetcode.com/problems/longest-palindromic-substring/
 
 import pytest
 
-from medium.longest_palindromic_substring import Solution
+from pyleetcode.medium.longest_palindromic_substring import Solution
 
 
 TEST_CASES = [

@@ -5,7 +5,7 @@ https://leetcode.com/problems/merge-sorted-array/
 
 import pytest
 
-from easy.merge_sorted_array import Solution
+from pyleetcode.easy.merge_sorted_array import Solution
 
 
 TEST_CASES = [

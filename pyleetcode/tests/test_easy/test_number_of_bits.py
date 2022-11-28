@@ -5,7 +5,7 @@ https://leetcode.com/problems/number-of-bits/
 
 import pytest
 
-from easy.number_of_bits import Solution
+from pyleetcode.easy.number_of_bits import Solution
 
 
 TEST_CASES = [

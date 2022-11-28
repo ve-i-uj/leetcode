@@ -5,7 +5,7 @@ https://leetcode.com/problems/contains-duplicate/
 
 import pytest
 
-from easy.contains_duplicate import Solution
+from pyleetcode.easy.contains_duplicate import Solution
 
 
 TEST_CASES = [

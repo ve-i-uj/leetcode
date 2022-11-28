@@ -5,7 +5,7 @@ https://leetcode.com/problems/happy-number/
 
 import pytest
 
-from easy.happy_number import Solution
+from pyleetcode.easy.happy_number import Solution
 
 
 TEST_CASES = [

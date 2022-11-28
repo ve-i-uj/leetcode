@@ -9,7 +9,7 @@ from threading import Thread, Event
 
 import pytest
 
-from easy.print_in_order import Foo
+from pyleetcode.easy.print_in_order import Foo
 
 
 TEST_CASES = [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]

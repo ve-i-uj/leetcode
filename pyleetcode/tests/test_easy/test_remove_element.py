@@ -5,7 +5,7 @@ https://leetcode.com/problems/remove-element/
 
 import pytest
 
-from easy.remove_element import Solution
+from pyleetcode.easy.remove_element import Solution
 
 
 TEST_CASES = [

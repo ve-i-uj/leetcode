@@ -5,7 +5,7 @@ https://leetcode.com/problems/move-zeroes/
 
 import pytest
 
-from easy.move_zeroes import Solution
+from pyleetcode.easy.move_zeroes import Solution
 
 
 TEST_CASES = [

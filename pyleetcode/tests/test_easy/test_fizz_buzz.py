@@ -5,7 +5,7 @@ https://leetcode.com/problems/fizz-buzz/
 
 import pytest
 
-from easy.fizz_buzz import Solution
+from pyleetcode.easy.fizz_buzz import Solution
 
 
 TEST_CASES = [

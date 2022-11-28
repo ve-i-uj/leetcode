@@ -5,7 +5,7 @@ https://leetcode.com/problems/single-number/
 
 import pytest
 
-from easy.single_number import Solution
+from pyleetcode.easy.single_number import Solution
 
 
 TEST_CASES = [

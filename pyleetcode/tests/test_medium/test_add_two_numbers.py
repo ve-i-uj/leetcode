@@ -7,7 +7,7 @@ from typing import Optional
 
 import pytest
 
-from medium.add_two_numbers import Solution, ListNode
+from pyleetcode.medium.add_two_numbers import Solution, ListNode
 
 
 def to_node(lst: list[int]) -> Optional[ListNode]:

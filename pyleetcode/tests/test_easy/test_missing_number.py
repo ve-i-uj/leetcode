@@ -5,7 +5,7 @@ https://leetcode.com/problems/missing-number/
 
 import pytest
 
-from easy.missing_number import Solution
+from pyleetcode.easy.missing_number import Solution
 
 
 TEST_CASES = [

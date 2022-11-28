@@ -5,7 +5,7 @@ https://leetcode.com/problems/intersection-of-two-linked-lists/
 
 import pytest
 
-from easy.intersection_of_two_linked_lists import Solution, ListNode
+from pyleetcode.easy.intersection_of_two_linked_lists import Solution, ListNode
 
 
 TEST_CASES = [

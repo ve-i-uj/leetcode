@@ -6,7 +6,7 @@ https://leetcode.com/problems/maximum-depth-of-binary-tree/
 from typing import Optional
 import pytest
 
-from easy.maximum_depth_of_binary_tree import Solution, TreeNode
+from pyleetcode.easy.maximum_depth_of_binary_tree import Solution, TreeNode
 
 
 TEST_CASES = [

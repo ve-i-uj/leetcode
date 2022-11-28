@@ -5,7 +5,7 @@ https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
 import pytest
 
-from easy.remove_duplicates_from_sorted_array import Solution
+from pyleetcode.easy.remove_duplicates_from_sorted_array import Solution
 
 
 TEST_CASES = [

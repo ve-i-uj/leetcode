@@ -5,7 +5,7 @@ https://leetcode.com/problems/intersection-of-two-arrays-ii/
 
 import pytest
 
-from easy.intersection_of_two_arrays_ii import Solution
+from pyleetcode.easy.intersection_of_two_arrays_ii import Solution
 
 
 TEST_CASES = [

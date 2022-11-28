@@ -5,7 +5,7 @@ https://leetcode.com/problems/majority-element/
 
 import pytest
 
-from easy.majority_element import Solution
+from pyleetcode.easy.majority_element import Solution
 
 
 TEST_CASES = [

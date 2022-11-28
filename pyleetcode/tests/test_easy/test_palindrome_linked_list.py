@@ -6,7 +6,7 @@ https://leetcode.com/problems/palindrome-linked-list/
 import pytest
 from typing import Optional
 
-from easy.palindrome_linked_list import Solution, ListNode
+from pyleetcode.easy.palindrome_linked_list import Solution, ListNode
 
 
 TEST_CASES = [

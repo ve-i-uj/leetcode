@@ -5,7 +5,7 @@ https://leetcode.com/problems/climbing-stairs/
 
 import pytest
 
-from easy.climbing_stairs import Solution
+from pyleetcode.easy.climbing_stairs import Solution
 
 
 TEST_CASES = [

@@ -5,7 +5,7 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 
 import pytest
 
-from easy.best_time_to_buy_and_sell_stock import Solution
+from pyleetcode.easy.best_time_to_buy_and_sell_stock import Solution
 
 
 TEST_CASES = [

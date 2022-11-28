@@ -5,7 +5,7 @@ https://leetcode.com/problems/valid-anagram/
 
 import pytest
 
-from easy.valid_anagram import Solution
+from pyleetcode.easy.valid_anagram import Solution
 
 
 TEST_CASES = [

@@ -5,7 +5,7 @@ https://leetcode.com/problems/search-insert-position/
 
 import pytest
 
-from easy.search_insert_position import Solution
+from pyleetcode.easy.search_insert_position import Solution
 
 
 TEST_CASES = [

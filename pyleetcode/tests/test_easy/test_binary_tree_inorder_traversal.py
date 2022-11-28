@@ -5,7 +5,7 @@ https://leetcode.com/problems/binary-tree-inorder-traversal/
 
 import pytest
 
-from easy.binary_tree_inorder_traversal import Solution, TreeNode
+from pyleetcode.easy.binary_tree_inorder_traversal import Solution, TreeNode
 
 
 TEST_CASES = [

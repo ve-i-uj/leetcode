@@ -5,7 +5,7 @@ https://leetcode.com/problems/implement-strstr/
 
 import pytest
 
-from easy.implement_strstr import Solution
+from pyleetcode.easy.implement_strstr import Solution
 
 
 TEST_CASES = [
