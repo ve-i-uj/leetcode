@@ -11,7 +11,7 @@ from pyleetcode.medium.generate_parentheses import Solution
 TEST_CASES = [
     (3, ["((()))", "(()())", "(())()", "()(())", "()()()"]),
     (1, ["()"]),
-    (6, []),
+    # (6, []),
 ]
 
 

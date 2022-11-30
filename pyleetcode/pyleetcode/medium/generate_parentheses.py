@@ -3,32 +3,29 @@
 https://leetcode.com/problems/generate-parentheses/
 """
 
-import itertools
 from typing import Optional, List, Any  # noqa: F401
 
 
 class Solution:
 
-    def process(self, *args, **kwargs):  # noqa: N802
+    def process(self, *args, **kwargs):
         return self.generateParenthesis(*args, **kwargs)
 
-    def generateParenthesis(self, n: int) -> List[str]:
-        res = []
-        for ps in itertools.permutations('(' * n + ')' * n, n * 2):
-            cntr = 0
-            for i, p in enumerate(ps, 1):
-                if cntr > len(ps) // 2:
-                    break
-                if p == '(':
-                    cntr += 1
-                else:
-                    cntr -= 1
+    def generateParenthesis(self, n: int) -> List[str]:  # noqa: N802
 
-                if cntr < 0:
-                    break
+        def _generate(ps: str, new_p: str, cntr: int, i: int) -> list[str]:
+            if new_p == '(':
+                cntr += 1
             else:
-                res.append(''.join(ps))
+                cntr -= 1
 
-        return list(set(res))
+            if cntr < 0 or (cntr >= 0 and cntr > (2 * n - i)):
+                return []
 
-        return []
+            if i + 1 == 2 * n:
+                return [ps + new_p]
+
+            return _generate(ps + new_p, '(', cntr, i+1) \
+                + _generate(ps + new_p, ')', cntr, i+1)
+
+        return _generate('', '(', 0, 0)
