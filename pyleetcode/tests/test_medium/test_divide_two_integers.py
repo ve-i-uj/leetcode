@@ -9,8 +9,11 @@ from pyleetcode.medium.divide_two_integers import Solution
 
 
 TEST_CASES = [
+    (22, 7, 3),
     (10, 3, 3),
     (7, -3, -2),
+    (98, 3, 32),
+    (101, 14, 7),
     (-2147483648, -1, 2147483647),
 ]
 

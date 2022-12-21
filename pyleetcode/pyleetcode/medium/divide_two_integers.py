@@ -15,29 +15,29 @@ class Solution:
         return self.divide(*args, **kwargs)
 
     def divide(self, dividend: int, divisor: int) -> int:
-        divd = str(dividend)
+        if dividend == MIN and divisor == -1:
+            return MAX
+        if dividend == 0:
+            return 0
+
         sign = 1
-        if divd[0] == '-':
-            sign *= -1
-            divd = divd[1:]
-        if divisor < 0:
-            sign *= -1
-            divisor *= -1
+        if dividend > 0 and divisor > 0 or dividend < 0 and divisor < 0:
+            sign = 1
+        else:
+            sign = -1
 
-        res = ''
-        the_rest = 0
-        head = ''
-        for x in divd:
-            the_rest = int(head + x)
-            cntr = 0
-            while the_rest - divisor >= 0:
-                cntr += 1
-                the_rest -= divisor
+        dividend = abs(dividend)
+        divisor = abs(divisor)
 
-            res += str(cntr)
-            head = str(the_rest)
+        res = 0
+        x = divisor
+        while dividend >= divisor:
+            y = 1
+            while x <= dividend >> 1:
+                x <<= 1
+                y <<= 1
+            dividend -= x
+            res += y
+            x = divisor
 
-        if sign > 0 and res == str(MIN * -1):
-            res = str(MAX)
-
-        return int(res) * sign
+        return res * sign
