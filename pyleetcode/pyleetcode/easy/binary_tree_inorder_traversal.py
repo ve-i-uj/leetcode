@@ -31,7 +31,7 @@ class TreeNode:
         return new(0)
 
     @staticmethod
-    def normalize_data(vals: list[int]):
+    def normalize_data(vals: list[Optional[int]]):
         i = 0
         while i < len(vals):
             if vals[i] is None:
