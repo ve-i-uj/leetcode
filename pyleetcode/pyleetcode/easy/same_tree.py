@@ -25,28 +25,12 @@ class Solution:
         return self.isSameTree(*args, **kwargs)
 
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        stack_p = [p]
-        stack_q = [q]
-        while stack_p and stack_q:
-            p = stack_p.pop()
-            q = stack_q.pop()
-
-            if p is None and q is None:
-                continue
-
-            if p is None or q is None:
-                return False
-
-            if p.val != q.val:
-                return False
-
-            stack_p.append(p.left)
-            stack_p.append(p.right)
-
-            stack_q.append(q.left)
-            stack_q.append(q.right)
-
-        if stack_p or stack_q:
+        if p is None and q is None:
+            return True
+        if p is None or q is None:
             return False
 
-        return True
+        if p.val != q.val:
+            return False
+
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
