@@ -26,16 +26,11 @@ class Solution:
         return self.deleteDuplicates(*args, **kwargs)
 
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        root = ListNode()
-        res = root
-        val = NO_VALUE
-        while head is not None:
-            if head.val != val:
-                root.next = head
-                val = head.val
-                root = root.next
-            head = head.next
+        node = head
+        while node is not None and node.next is not None:
+            if node.val == node.next.val:
+                node.next = node.next.next
+                continue
+            node = node.next
 
-        root.next = None
-
-        return res.next
+        return head
