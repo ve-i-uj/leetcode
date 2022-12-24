@@ -51,18 +51,18 @@ class Solution:
         return self.flatten(*args, **kwargs)
 
     def flatten(self, root: Optional[TreeNode]):
-        if root is None:
+        if not root:
             return
 
         stack = [root]
-        parent = TreeNode()
         while stack:
             node = stack.pop()
+            if node.left is not None:
+                curr: TreeNode = node.left
+                while curr.right is not None:
+                    curr = curr.right
+                curr.right = node.right
+                node.right = node.left
+                node.left = None
             if node.right is not None:
                 stack.append(node.right)
-            if node.left is not None:
-                stack.append(node.left)
-
-            parent.right = node
-            parent.left = None
-            parent = parent.right
