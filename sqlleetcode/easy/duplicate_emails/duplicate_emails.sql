@@ -4,11 +4,6 @@
 
 SELECT
   email Email
-FROM (
-  SELECT
-  	email,
-  	COUNT(email) cnt
-  FROM Person
-  GROUP BY email
-) g
-WHERE g.cnt > 1
+FROM Person p
+GROUP BY p.email
+HAVING COUNT(email) > 1
