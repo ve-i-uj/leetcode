@@ -2,15 +2,10 @@
 --
 -- https://leetcode.com/problems/second-highest-salary/
 
-SELECT MAX((
-  SELECT
+SELECT (
+  SELECT DISTINCT
     e.salary
   FROM Employee e
-  WHERE e.salary < (
-    SELECT
-      MAX(e.salary)
-    FROM Employee e
-  )
   ORDER BY e.salary DESC
-  LIMIT 1
-)) SecondHighestSalary
+  LIMIT 1, 1
+) SecondHighestSalary
