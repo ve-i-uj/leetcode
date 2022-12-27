@@ -19,6 +19,16 @@ fi
 
 module_name=$(bash "$SCRIPTS/misc/module_name_by_task.sh" "$task_name")
 task_url=$(bash "$SCRIPTS/misc/url_by_task.sh" "$task_name")
+git_branch=$(bash "$SCRIPTS/misc/git_branch_by_task.sh" "$task_name")
+
+echo "[INFO] Check the leetcode git branch name is \"develop\""
+cd "$PROJECT_DIR"
+current_branch=$(git branch --show-current)
+if [ $current_branch != "develop" ]; then
+    echo "[ERROR] The current git branch name is not \"develop\" (current branch = \"$current_branch\")"
+    exit 1
+fi
+git checkout -b "$git_branch"
 
 task_dir="$SQL_DIR/$level/$module_name"
 if [ ! -d "$task_dir" ]; then
