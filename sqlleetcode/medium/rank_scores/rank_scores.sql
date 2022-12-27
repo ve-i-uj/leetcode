@@ -4,15 +4,5 @@
 
 SELECT
   s.score,
-  r.rank
+  DENSE_RANK() OVER(ORDER BY s.score DESC) "rank"
 FROM Scores s
-  JOIN (
-    SELECT
-      ROW_NUMBER() OVER(ORDER BY r.score DESC) "rank" ,
-      r.score
-    FROM Scores r
-    GROUP BY r.score
-    ORDER BY r.score DESC
-  ) r
-    ON s.score = r.score
-ORDER BY s.score DESC
