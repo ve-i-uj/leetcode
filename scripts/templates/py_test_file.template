@@ -1,0 +1,17 @@
+"""Unit tests of "${task_name}".
+
+${task_url}
+"""
+
+import pytest
+
+from pyleetcode.${level}.${module_name} import Solution
+
+
+TEST_CASES = [
+]  # noqa
+@pytest.mark.skip(reason='Test template')
+@pytest.mark.parametrize('', TEST_CASES)
+def test():
+    res = Solution().process()
+

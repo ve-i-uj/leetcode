@@ -6,10 +6,13 @@ task_name="$1"
 
 module_name=$(
     echo $task_name \
-    | grep -oEw "[a-zA-Z ]+" \
-    | xargs \
-    | tr -s '[:blank:]' '_' \
-    | tr '[:upper:]' '[:lower:]'
+    | python3 -c "import re; print(\
+        re.findall(\
+            '\d+\. ([0-9a-zA-Z -_]+)', \
+            '16. 3Sum Closest'
+        )[0]\
+        .replace(' ', '-')\
+        .lower()
+    )"
 )
-
 echo $module_name
