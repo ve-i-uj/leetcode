@@ -11,19 +11,24 @@ class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         if not nums:
             return 0
+        nums.sort()
         res: int = sum(nums[:3])
-        for i, n1 in enumerate(nums):
-            for j, n2 in enumerate(nums[1:], start=1):
-                for k, n3 in enumerate(nums[2:], start=2):
-                    if i == j or i == k or j == k:
-                        continue
-                    s = n1 + n2 + n3
-                    if s == target:
-                        return s
-                    (_value, res) = min(
-                        (abs(target - res), res),
-                        (abs(target - s), s),
-                        key=lambda t: t[0]
-                    )
+        for i, _n in enumerate(nums):
+            l, r = i - 1, i + 1
+            while l >= 0 and r < len(nums):
+                s = nums[i] + nums[l] + nums[r]
+                res, _ = min(
+                    (res, abs(target - res)),
+                    (s, abs(target - s)),
+                    key=lambda t: t[1]
+                )
+
+                if res == target:
+                    return res
+
+                if s > target:
+                    l -= 1
+                else:
+                    r += 1
 
         return res
