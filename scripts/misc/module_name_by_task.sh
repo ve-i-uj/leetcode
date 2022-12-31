@@ -8,10 +8,12 @@ module_name=$(
     echo $task_name \
     | python3 -c "import re; print(\
         re.findall(\
-            '\d+\. ([0-9a-zA-Z -_]+)', \
-            '16. 3Sum Closest'
+            '\d+\.\s*\d*([\w\d ]+)', \
+            '$task_name'
         )[0]\
-        .replace(' ', '-')\
+        .strip()\
+        .replace(' ', '_')\
+        .replace('-', '_')\
         .lower()
     )"
 )
