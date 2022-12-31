@@ -6,10 +6,15 @@ task_name="$1"
 
 module_name=$(
     echo $task_name \
-    | grep -oEw "[a-zA-Z ]+" \
-    | xargs \
-    | tr -s '[:blank:]' '_' \
-    | tr '[:upper:]' '[:lower:]'
+    | python3 -c "import re; print(\
+        re.findall(\
+            '\d+\.\s*\d*([\w\d ]+)', \
+            '$task_name'
+        )[0]\
+        .strip()\
+        .replace(' ', '_')\
+        .replace('-', '_')\
+        .lower()
+    )"
 )
-
 echo $module_name
