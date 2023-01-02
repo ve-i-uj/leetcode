@@ -32,14 +32,3 @@ TEST_CASES = [
 @pytest.mark.parametrize('list1, list2, res', TEST_CASES)
 def test_1(list1: ListNode, list2: ListNode, res: list):
     assert ExtListNode.cast(Solution().process(list1, list2)) == res
-
-
-# TODO: change to timeit
-def test_merge_two_sorted_lists(benchmark):
-    solution = Solution()
-
-    def process():
-        for list1, list2, _res in TEST_CASES:
-            solution.process(list1, list2)
-
-    benchmark(process)
