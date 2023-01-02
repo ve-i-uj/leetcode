@@ -23,11 +23,23 @@ task_url=$(bash "$curr_dir/misc/url_by_task.sh" "$task_name")
 export task_name=$task_name task_url=$task_url module_name=$module_name level=$level
 
 path="$PROJECT_DIR/leetcode/pyleetcode/tests/test_$level/test_$module_name.py"
+root_dir=$( dirname "$path" )
+if [ ! -d "$root_dir" ]; then
+    echo "[INFO] Create the directory \"$root_dir\""
+    mkdir -p "$root_dir"
+fi
 echo "[INFO] Create a test module template (path = \"$path\") ..."
+
 envsubst < "$curr_dir/templates/py_test_file.template" > $path
 
 path="$PROJECT_DIR/leetcode/pyleetcode/pyleetcode/$level/$module_name.py"
+root_dir=$( dirname "$path" )
+if [ ! -d "$root_dir" ]; then
+    echo "[INFO] Create the directory \"$root_dir\""
+    mkdir -p "$root_dir"
+fi
 echo "[INFO] Create a module template (path = \"$path\") ..."
 envsubst < "$curr_dir/templates/py_module.template" > $path
 
 echo "[INFO] Done ($0)"
+

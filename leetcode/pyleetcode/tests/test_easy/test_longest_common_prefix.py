@@ -26,13 +26,3 @@ TEST_CASES = [
 @pytest.mark.parametrize('strs,res', TEST_CASES)
 def test_1(strs: list[str], res: bool):
     assert Solution().process(strs) == res
-
-
-def test_benchmark_longest_common_prefix(benchmark):
-    solution = Solution()
-
-    def process():
-        for strs, _res in TEST_CASES:
-            solution.process(strs)
-
-    benchmark(process)
