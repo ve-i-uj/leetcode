@@ -13,6 +13,13 @@ TEST_CASES = [
     ('aa', 'a*', True),
     ('ab', '.*', True),
     ('aab', 'c*a*b', True),
+    ('ab', 'c*a*b', True),
+    ('cb', 'c*a*b', True),
+    ('mississippi', 'mis*is*p*.', False),
+    ('ab', '.*c', False),
+    ('aaa', 'aaaa', False),
+    ('aaa', 'a*a', True),
+    ('a', 'ab*', True),
 ]
 
 
