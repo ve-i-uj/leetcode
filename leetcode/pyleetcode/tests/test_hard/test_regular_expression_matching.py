@@ -20,6 +20,15 @@ TEST_CASES = [
     ('aaa', 'aaaa', False),
     ('aaa', 'a*a', True),
     ('a', 'ab*', True),
+    ('aaaaaaaaaaaaab', 'a*a*a*a*a*a*a*a*a*a*c', False),
+    ('mississippi', 'mis*is*ip*.', True),
+    ('aa', 'aa', True),
+    ('a', 'b', False),
+    ('a', '.*..a*', False),
+    ('bbab', 'b*a*', False),
+    ('bbba', '.*b', False),
+    ('acaabbaccbbacaabbbb', 'a*.*b*.*a*aa*a*', False),
+    ('abcaaaaaaabaabcabac', '.*ab.a.*a*a*.*b*b*', True),
 ]
 
 
