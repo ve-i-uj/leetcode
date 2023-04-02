@@ -18,4 +18,4 @@ TEST_CASES = [
 @pytest.mark.parametrize('nums, output', TEST_CASES)
 def test(nums: list[int], output: list[list[int]]):
     res = Solution().process(nums)
-    assert res == output
+    assert sorted(res) == sorted(output)

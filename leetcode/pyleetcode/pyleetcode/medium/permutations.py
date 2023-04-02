@@ -13,4 +13,19 @@ class Solution:
         return self.permute(*args, **kwargs)
 
     def permute(self, nums: List[int]) -> List[List[int]]:
-        return [list(p) for p in itertools.permutations(nums, len(nums))]
+        if len(nums) == 1:
+            return [[nums[0]]]
+
+        res = []
+        for _ in range(len(nums)):
+            head, *nums = nums[:]
+            perms = self.permute(nums)
+
+            for perm in perms:
+                perm.append(head)
+
+            nums.append(head)
+            res.extend(perms)
+
+        return res
+
