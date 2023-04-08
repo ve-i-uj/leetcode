@@ -8,8 +8,8 @@ set -e
 _curr_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source "$_curr_dir/init.sh"
 
-level="$1"
-task_name="$2"
+level="$2"
+task_name="$1"
 
 if [ -z "$level" ] || [ -z "$task_name" ]; then
     echo "[ERROR] Not all arguments passed"
