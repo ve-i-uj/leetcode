@@ -2,15 +2,11 @@
 --
 -- https://leetcode.com/problems/consecutive-numbers/
 
-SELECT DISTINCT l.num "ConsecutiveNums"
-FROM Logs l
-  JOIN (
-    SELECT l1.id,
-           l1.num
-    FROM Logs l1
-      JOIN Logs l2
-        ON l1.id = l2.id + 1
-    WHERE l1.num = l2.num
-  ) sl
-    ON l.id = sl.id + 1
-WHERE l.num = sl.num
+SELECT DISTINCT l1.num "ConsecutiveNums"
+FROM Logs l1
+  JOIN Logs l2
+    ON l1.id = l2.id - 1
+  JOIN Logs l3
+    ON l1.id = l3.id - 2
+WHERE l1.num = l2.num
+  AND l1.num = l3.num
