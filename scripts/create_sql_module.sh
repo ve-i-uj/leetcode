@@ -1,6 +1,6 @@
 USAGE="
 Example:
-bash $0 easy \"27. Remove Element\"
+bash $0 \"27. Remove Element\" easy
 "
 
 set -e
