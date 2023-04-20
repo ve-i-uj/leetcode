@@ -2,17 +2,12 @@
 --
 -- https://leetcode.com/problems/game-play-analysis-iv/
 
-WITH cte AS (
+SELECT ROUND( COUNT(t2.player_id) / COUNT(t1.player_id), 2 ) AS "fraction"
+FROM (
   SELECT player_id,
-         (DATE_ADD(MIN(event_date) OVER( PARTITION BY player_id ), INTERVAL 1 DAY) = event_date) AS mtched
-  FROM Activity a
-), players AS (
-  SELECT COUNT(player_id) AS "value"
-  FROM cte
-  WHERE mtched = 1
-), total AS (
-  SELECT COUNT( DISTINCT player_id  ) "value"
+         MIN(event_date) AS event_date
   FROM Activity
-)
-SELECT ROUND( players.value / total.value, 2 ) AS "fraction"
-FROM players, total
+  GROUP BY player_id
+) t1 LEFT JOIN Activity t2
+  ON t1.player_id = t2.player_id
+    AND DATE_ADD(t1.event_date, INTERVAL 1 DAY) = t2.event_date
