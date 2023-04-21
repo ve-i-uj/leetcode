@@ -2,18 +2,18 @@
 --
 -- https://leetcode.com/problems/department-top-three-salaries/
 
-SELECT d.name "Department",
-       e.name "Employee",
-       e.salary "Salary"
-FROM Employee e
-  JOIN (
-    SELECT e.departmentId,
-           e.salary,
-           ROW_NUMBER() OVER( PARTITION BY e.departmentId ORDER BY e.salary DESC ) AS "r_number"
-    FROM Employee e
-    GROUP BY e.departmentId, e.salary
-  ) tops ON e.departmentId = tops.departmentId
-    AND e.salary = tops.salary
-  JOIN Department d
-    ON d.id = e.departmentId
-WHERE tops.r_number < 4
+EXPLAIN
+WITH cte AS (
+  SELECT d.name "Department",
+         e.name "Employee",
+         e.salary "Salary",
+         DENSE_RANK() OVER( PARTITION BY d.id ORDER BY e.salary DESC ) AS "rnk"
+  FROM Department d
+    JOIN Employee e
+      ON d.id = e.departmentId
+)
+SELECT Department,
+       Employee,
+       Salary
+FROM cte
+WHERE cte.rnk < 4
