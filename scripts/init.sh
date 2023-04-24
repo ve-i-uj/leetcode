@@ -4,4 +4,4 @@ export PROJECT_NAME=$( basename "$PROJECT_DIR" )
 
 export SCRIPTS="$PROJECT_DIR/scripts"
 
-SQL_DIR="$PROJECT_DIR/sqlleetcode"
+SQL_DIR="$PROJECT_DIR/leetcode/sqlleetcode"
