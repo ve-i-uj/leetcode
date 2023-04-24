@@ -2,9 +2,12 @@
 --
 -- https://leetcode.com/problems/managers-with-at-least-5-direct-reports/
 
-SELECT e2.name
+SELECT e1.name
 FROM Employee e1
-  JOIN Employee e2
-    ON e1.managerId = e2.id
-GROUP BY e2.name
-HAVING COUNT(*) > 4
+  JOIN (
+    SELECT managerId,
+           COUNT(*)
+    FROM Employee e
+    GROUP BY managerId
+    HAVING COUNT(*) > 4
+  ) e2 ON e1.id = e2.managerId
