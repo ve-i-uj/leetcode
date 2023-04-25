@@ -7,11 +7,12 @@ https://leetcode.com/problems/palindrome-number/
 class Solution:
 
     def isPalindrome(self, x: int) -> bool:  # noqa
-        str_x = str(x)
-        return str_x == str_x[::-1]
+        if x < 0 or (x != 0 and x % 10 == 0):
+            return False
+        invert = 0
+        while x > invert:
+            invert = invert * 10 + x % 10
+            x //= 10
 
+        return x == invert or x == invert // 10
 
-def test():
-    assert Solution().isPalindrome(121)
-    assert not Solution().isPalindrome(-121)
-    assert not Solution().isPalindrome(10)

@@ -1,26 +1,24 @@
-// 9. Palindrome Number
-//
-// https://leetcode.com/problems/palindrome-number/
+//! 9. Palindrome Number
+//!
+//! https://leetcode.com/problems/palindrome-number/
 
-
-#[allow(dead_code)]
 pub struct Solution {
 }
 
-#[allow(dead_code)]
 impl Solution {
     pub fn is_palindrome(x: i32) -> bool {
-        let x: String = x.to_string();
-        let reversed: String = x.chars().rev().collect();
-        x == reversed
-    }
-}
+        if x.is_negative() || (x != 0 && x % 10 == 0) {
+            return false
+        }
+        let mut y = x;
+        let mut invert = 0;
+        while y > invert {
+            invert = 10 * invert + y % 10;
+            y /= 10;
+        }
 
-#[allow(dead_code)]
-pub fn run() {
-    debug_assert!(Solution::is_palindrome(121));
-    debug_assert!(!Solution::is_palindrome(-121));
-    debug_assert!(!Solution::is_palindrome(10));
+        invert == y || invert / 10 == y
+    }
 }
 
 #[cfg(test)]
@@ -31,12 +29,19 @@ mod tests {
     fn test_1() {
         assert!(Solution::is_palindrome(121))
     }
+
     #[test]
     fn test_2() {
         assert!(!Solution::is_palindrome(-121))
     }
+
     #[test]
     fn test_3() {
         assert!(!Solution::is_palindrome(10))
+    }
+
+    #[test]
+    fn test_4() {
+        assert!(Solution::is_palindrome(0))
     }
 }

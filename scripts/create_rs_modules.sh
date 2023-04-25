@@ -24,6 +24,16 @@ fi
 
 module_name=$(bash "$curr_dir/misc/module_name_by_task.sh" "$task_name")
 task_url=$(bash "$curr_dir/misc/url_by_task.sh" "$task_name")
+git_branch=$(bash "$SCRIPTS/misc/git_branch_by_task.sh" "$task_name")
+
+echo "[INFO] Check the leetcode git branch name is \"develop\""
+cd "$PROJECT_DIR"
+current_branch=$(git branch --show-current)
+if [ $current_branch != "develop" ]; then
+    echo "[ERROR] The current git branch name is not \"develop\" (current branch = \"$current_branch\")"
+    exit 1
+fi
+git checkout -b "$git_branch"
 
 # These variables need for "envsubst"
 export task_name=$task_name task_url=$task_url module_name=$module_name
