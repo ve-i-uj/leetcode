@@ -21,3 +21,4 @@ pub mod single_number;
 pub mod min_stack;
 pub mod majority_element;
 pub mod excel_sheet_column_number;
+pub mod two_sum;

@@ -1,12 +1,14 @@
+set -e
+
 # Import global constants
 curr_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-source `realpath $curr_dir/../init.sh`
+source `realpath $curr_dir/init.sh`
 
 USAGE="
 Usage. The script creates a template of a rust module for the leetcode task.
-Use the task level name as the first argument (easy, medium, hard) and \
-the task name as the second. Example:
-bash $0 easy \"27. Remove Element\"
+Use the task name as the first argument (easy, medium, hard) and \
+the task level name as the second. Example:
+bash $0 \"27. Remove Element\" easy
 "
 
 SRC_PATH="$PROJECT_DIR/leetcode/rsleetcode/src"
