@@ -1,0 +1,16 @@
+Create Table If Not Exists Insurance (pid int, tiv_2015 float, tiv_2016 float, lat float, lon float);
+Truncate table Insurance;
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('1', '224.17', '952.73', '32.4', '20.2');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('2', '224.17', '900.66', '52.4', '32.7');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('3', '824.61', '645.13', '72.4', '45.2');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('4', '424.32', '323.66', '12.4', '7.7 ');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('5', '424.32', '282.9 ', '12.4', '7.7 ');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('6', '625.05', '243.53', '52.5', '32.8');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('7', '424.32', '968.94', '72.5', '45.3');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('8', '624.46', '714.13', '12.5', '7.8');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('9', '425.49', '463.85', '32.5', '20.3');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('10 ', '624.46', '776.85', '12.4', '7.7');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('11 ', '624.46', '692.71', '72.5', '45.3');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('12 ', '225.93', '933', '12.5', '7.8');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('13 ', '824.61', '786.86', '32.6', '20.3');
+insert into Insurance (pid, tiv_2015, tiv_2016, lat, lon) values ('14 ', '824.61', '935.34', '52.6', '32.8');
