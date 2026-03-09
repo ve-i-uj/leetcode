@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Returns the the task name in lower case and using hyphens instead of spaces.
+# Returns the task name in lower case and using hyphens instead of spaces.
 
 curr_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 

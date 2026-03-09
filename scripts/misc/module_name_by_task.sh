@@ -9,7 +9,7 @@ module_name=$(
     echo $task_name \
     | python3 -c "import re; print(\
         re.findall(\
-            '\d+\.\s*\d*([\w\d ]+)', \
+            r'\d+\.\s*\d*([\w\d ]+)', \
             '$task_name'
         )[0]\
         .strip()\
